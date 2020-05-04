@@ -29,8 +29,8 @@ def main():
         policy_config_file = os.path.join(args.model_dir, os.path.basename(args.policy_config))
         if os.path.exists(os.path.join(args.model_dir, 'resumed_rl_model.pth')):
             model_weights = os.path.join(args.model_dir, 'resumed_rl_model.pth')
-        else:
-            model_weights = os.path.join(args.model_dir, 'rl_model.pth')
+        #else:
+            #model_weights = os.path.join(args.model_dir, 'rl_model.pth')
     else:
         env_config_file = args.env_config
         policy_config_file = args.env_config

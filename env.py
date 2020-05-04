@@ -61,9 +61,9 @@ class Env():
 
     def generate_obstacle(self, i):
         obstacle = Obstacle()
-        radius = round(random.choice(np.linspace(self.grid_size*1, self.grid_size * 3, num=6)), 2)
+        radius = round(random.choice(np.linspace(self.grid_size*2, self.grid_size * 5, num=6)), 2)
         x_position = round(random.choice(np.linspace(-self.square_width//2, self.square_width//2, num=int(self.square_width))), 2)
-        y_position = round(random.choice(np.linspace(-1, self.square_width//2, num=int(self.square_width))), 2)
+        y_position = round(random.choice(np.linspace(-self.circle_radius + 2, self.square_width//2, num=int(self.square_width))), 2)
         obstacle.set(x_position, y_position, radius)
         #logging.info('obstacle num:{}, x_position:{}, y_position:{}, radius:{}'.format(i, x_position, y_position, radius))
         return obstacle

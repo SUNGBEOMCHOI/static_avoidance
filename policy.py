@@ -6,6 +6,8 @@ import itertools
 import numpy as np
 from utils.state import FullState, SmallState, ObstacleState
 import math
+import time
+import copy
 
 def mlp(input_dim, mlp_dims, last_relu=False):
     layers = []
@@ -91,6 +93,7 @@ class SOA():
         self.env = env
 
     def predict(self, state):
+        a = time.time()
         if self.phase is None or self.device is None:
             raise AttributeError('Phase, device attributes have to be set!')
 
@@ -114,6 +117,8 @@ class SOA():
             for action in self.action_space:
                 next_self_state = self.propagate(state.self_state, action) #로봇의 FullState를 반환
                 reward = self.compute_reward(next_self_state, state.obstacle_states)
+                if reward == -0.025: #다다음 상황이 충돌일 경우에는 현재 측정하는 action을 버리고 새로운 action을 탐색
+                    continue
                 next_small_self_state = SmallState(next_self_state.vx, next_self_state.vy, next_self_state.radius)
 
                 # VALUE UPDATE
@@ -143,7 +148,7 @@ class SOA():
             #raise ValueError('Value network is not well trained. ')
         if self.phase == 'train':
             self.last_state = self.transform(state).to(self.device)
-
+        print(time.time() - a)
         return max_action
 
     def transform(self, all_state):
@@ -182,7 +187,7 @@ class SOA():
             reward = -0.025
         elif reaching_goal:
             reward = 1
-        elif dmin < 0.1:
+        elif dmin < 0.05:
             reward = (dmin - 0.1) * 0.02 * self.time_step
         else:
             reward = 0
@@ -201,11 +206,22 @@ class SOA():
         """
         holonomic = True if self.kinematics == 'holonomic' else False
         speeds = [current_velocity + (v_pref / 10) * (i - 2) for i in range(self.speed_samples)]
+
+        speed_zero = []
         for i in range(len(speeds)):
             if speeds[i] > v_pref:
                 speeds[i] = v_pref
-            elif speeds[i] < 0:
-                speeds[i] = 0
+            elif speeds[i] <= 0:
+                speed_zero.append(i)
+        speedss = copy.deepcopy(speeds)
+        speeds = []
+        for kk in range(len(speedss)):
+            if kk in speed_zero:
+                continue
+            else:
+                speeds.append(speedss[kk])
+
+
         if holonomic:
             rotations = np.linspace(0, 2 * np.pi, self.rotation_samples, endpoint=False)
         else:
@@ -237,8 +253,8 @@ class SOA():
             next_theta = state.theta + action.r
             next_vx = action.v * np.cos(next_theta)
             next_vy = action.v * np.sin(next_theta)
-            next_px = state.px + next_vx * self.time_step
-            next_py = state.py + next_vy * self.time_step
+            next_px = state.px + next_vx * self.time_step * 2
+            next_py = state.py + next_vy * self.time_step * 2
             next_state = FullState(next_px, next_py, next_vx, next_vy, state.radius, state.gx, state.gy,
                                    state.v_pref, next_theta)
         return next_state
