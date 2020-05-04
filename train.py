@@ -41,8 +41,8 @@ def main():
         shutil.copy(args.env_config, args.output_dir)
         shutil.copy(args.policy_config, args.output_dir)
         shutil.copy(args.train_config, args.output_dir)
-    log_file = os.path.join(args.output_dir, 'output1.log')
-    rl_weight_file = os.path.join(args.output_dir, 'rl_model.pth')
+    log_file = os.path.join(args.output_dir, 'output2.log')
+    rl_weight_file = os.path.join(args.output_dir, 'resumed_rl_model.pth')
 
     # configure logging
     mode = 'a' if args.resume else 'w'
@@ -102,7 +102,7 @@ def main():
         if not os.path.exists(rl_weight_file):
             logging.error('RL weights does not exist')
         model.load_state_dict(torch.load(rl_weight_file))
-        rl_weight_file = os.path.join(args.output_dir, 'resumed_rl_model.pth')
+        rl_weight_file = os.path.join(args.output_dir, 'resumed_rl_model2.pth')
         logging.info('Load reinforcement learning trained weights. Resume training')
 
     policy.set_env(env)

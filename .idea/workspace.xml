@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf9fd28d-5d8a-463c-b832-70c314e1e6ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output/train.config" beforeDir="false" afterPath="$PROJECT_DIR$/data/output/train.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/train.config" beforeDir="false" afterPath="$PROJECT_DIR$/configs/train.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/output/env.config" beforeDir="false" afterPath="$PROJECT_DIR$/data/output/env.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new6.gif" beforeDir="false" afterPath="$PROJECT_DIR$/new6.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/policy.py" beforeDir="false" afterPath="$PROJECT_DIR$/policy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,10 +135,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588123340648" />
-    <state x="523" y="207" width="613" height="538" key="find.popup" timestamp="1588470304645">
+    <state x="523" y="207" width="613" height="538" key="find.popup" timestamp="1588559981170">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="523" y="207" width="613" height="538" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588470304645" />
+    <state x="523" y="207" width="613" height="538" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1588559981170" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588239209203">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

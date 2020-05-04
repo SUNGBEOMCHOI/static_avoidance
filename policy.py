@@ -93,7 +93,7 @@ class SOA():
         self.env = env
 
     def predict(self, state):
-        a = time.time()
+        #a = time.time()
         if self.phase is None or self.device is None:
             raise AttributeError('Phase, device attributes have to be set!')
 
@@ -148,7 +148,7 @@ class SOA():
             #raise ValueError('Value network is not well trained. ')
         if self.phase == 'train':
             self.last_state = self.transform(state).to(self.device)
-        print(time.time() - a)
+        #print(time.time() - a)
         return max_action
 
     def transform(self, all_state):
